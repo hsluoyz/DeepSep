@@ -1,8 +1,9 @@
 # coding=gbk
+import collections
 
 test_dict = {}
 
-test_set = {}
+test_set = collections.OrderedDict()
 labels = []
 links = []
 
