@@ -31,9 +31,7 @@ def old_way():
     plt.show()
 
 
-if __name__ == '__main__':
-    test.run_test()
-
+def generate_json():
     nodes = []
     for i in range(len(settings.labels)):
         nodes.append({"id": settings.labels[i], "group": 1, "size": len(settings.test_set[(i,)]) + 2})
@@ -46,3 +44,8 @@ if __name__ == '__main__':
 
     data = {"nodes": nodes, "links": links}
     store(data)
+
+
+if __name__ == '__main__':
+    test.run_test()
+    generate_json()
