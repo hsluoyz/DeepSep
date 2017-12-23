@@ -43,7 +43,7 @@ if __name__ == '__main__':
     for i in range(0, len(keys)):
         for j in range(i + 1, len(keys)):
             if settings.test_graph[i][j] != 0:
-                links.append({"source": keys[i], "target": keys[j], "value": int(settings.test_graph[i][j] * 10)})
+                links.append({"source": keys[i], "target": keys[j], "value": settings.test_graph[i][j] * 5})
 
     data = {}
     data["nodes"] = nodes
