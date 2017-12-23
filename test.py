@@ -241,13 +241,21 @@ def print_labels():
 
 
 def print_clusters():
+    print "*****************************************************"
+    print "Size of clusters: " + str(len(settings.clusters))
+    print "*****************************************************"
     for c in settings.clusters:
         print(c)
+    print ""
 
 
 def print_links():
+    print "*****************************************************"
+    print "Size of links: " + str(len(settings.clusters))
+    print "*****************************************************"
     for i in range(len(settings.clusters)):
         print(settings.links[i])
+    print ""
 
 
 def calculate_labels():
