@@ -2,11 +2,17 @@
 
 import networkx as nx
 import matplotlib.pyplot as plt
+import json
 
 import test
 import settings
 
-if __name__ == '__main__':
+
+def store(data):
+    with open('miserables2.json', 'w') as json_file:
+        json_file.write(json.dumps(data, indent=2))
+
+def old_way():
     test.run_test()
 
     G = nx.Graph()
@@ -23,3 +29,23 @@ if __name__ == '__main__':
 
     nx.draw(G, with_labels=True)
     plt.show()
+
+
+if __name__ == '__main__':
+    test.run_test()
+
+    nodes = []
+    for key in settings.test_set:
+        nodes.append({"id": key, "group": 1})
+
+    links = []
+    keys = settings.test_set.keys()
+    for i in range(0, len(keys)):
+        for j in range(i + 1, len(keys)):
+            if settings.test_graph[i][j] != 0:
+                links.append({"source": keys[i], "target": keys[j], "value": settings.test_graph[i][j] * 10})
+
+    data = {}
+    data["nodes"] = nodes
+    data["links"] = links
+    store(data)
