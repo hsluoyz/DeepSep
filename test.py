@@ -236,7 +236,7 @@ def cleanse_test_matrix2(m, case_list):
     return new_m, new_case_list
 
 
-def get_test_set():
+def calculate_labels():
     settings.labels = settings.test_dict.keys()
 
     for i in range(len(settings.labels)):
@@ -247,13 +247,13 @@ def get_test_set():
     pprint.pprint(settings.labels)
 
 
-def get_edges():
+def calculate_links():
     settings.links = [([0] * len(settings.labels)) for i in range(len(settings.labels))]
     for i in range(0, len(settings.labels)):
         for j in range(i + 1, len(settings.labels)):
-            whole = min(len(settings.test_set[(i,)]), settings.test_set[(j,)])
-            over = len(settings.test_set[(i,)] & settings.test_set[(j,)])
-            weight = float(over) / whole
+            n = min(len(settings.test_set[(i,)]), settings.test_set[(j,)])
+            m = len(settings.test_set[(i,)] & settings.test_set[(j,)])
+            weight = float(m) / n
             # print(keys[i], keys[j], weight)
             settings.links[i][j] = weight
 
@@ -266,8 +266,8 @@ def run_test():
     pprint.pprint(settings.api_list)
     # pprint.pprint(settings.test_dict)
 
-    get_test_set()
-    get_edges()
+    calculate_labels()
+    calculate_links()
 
 
 if __name__ == '__main__':
