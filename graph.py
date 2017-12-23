@@ -12,6 +12,7 @@ def store(data):
     with open('miserables2.json', 'w') as json_file:
         json_file.write(json.dumps(data, indent=2))
 
+
 def old_way():
     test.run_test()
 
@@ -31,18 +32,22 @@ def old_way():
     plt.show()
 
 
+def get_displayed_label(index):
+    return ", ".join(map(lambda i: settings.labels[i], settings.clusters[index]))
+
+
 def generate_json():
     size = len(settings.clusters)
 
     nodes = []
     for i in range(size):
-        nodes.append({"id": settings.labels[i], "group": 1, "size": len(settings.funcs[i]) + 2})
+        nodes.append({"id": get_displayed_label(i), "group": 1, "size": len(settings.funcs[i]) + 2})
 
     links = []
     for i in range(size):
         for j in range(i + 1, size):
             if settings.links[i][j] != 0:
-                links.append({"source": settings.labels[i], "target": settings.labels[j], "value": settings.links[i][j] * 5})
+                links.append({"source": get_displayed_label(i), "target": get_displayed_label(j), "value": settings.links[i][j] * 5})
 
     data = {"nodes": nodes, "links": links}
     store(data)
