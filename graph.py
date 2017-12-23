@@ -4,6 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import json
 
+import algorithm
 import test
 import settings
 
@@ -55,4 +56,6 @@ def generate_json():
 
 if __name__ == '__main__':
     test.run_test()
+    algorithm.do_clustering()
+    test.print_clusters()
     generate_json()

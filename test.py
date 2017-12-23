@@ -273,8 +273,6 @@ def calculate_links():
             # print(keys[i], keys[j], weight)
             settings.links[i][j] = weight
 
-    print_links()
-
 
 def run_test():
     init_from_test()
@@ -284,6 +282,7 @@ def run_test():
 
     calculate_labels()
     calculate_links()
+    print_links()
 
 
 if __name__ == '__main__':
