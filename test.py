@@ -241,13 +241,12 @@ def calculate_labels():
     pprint.pprint(settings.labels)
 
     for i in range(len(settings.labels)):
-        settings.clusters.append((i,))
-        settings.funcs.append(set())
+        settings.clusters.append(settings.Cluster((i,)))
         for func in settings.test_dict[settings.labels[i]]:
-            settings.funcs[i].add(func)
+            settings.clusters[i].funcs.add(func)
 
-    pprint.pprint(settings.clusters)
-    pprint.pprint(settings.funcs)
+    for c in settings.clusters:
+        print(c)
 
 
 def calculate_links():
@@ -255,8 +254,8 @@ def calculate_links():
     settings.links = [([0] * size) for i in range(size)]
     for i in range(size):
         for j in range(i + 1, size):
-            n = min(len(settings.funcs[i]), settings.funcs[j])
-            m = len(settings.funcs[i] & settings.funcs[j])
+            n = min(len(settings.clusters[i].funcs), settings.clusters[j].funcs)
+            m = len(settings.clusters[i].funcs & settings.clusters[j].funcs)
             weight = float(m) / n
             # print(keys[i], keys[j], weight)
             settings.links[i][j] = weight

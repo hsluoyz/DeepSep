@@ -33,7 +33,7 @@ def old_way():
 
 
 def get_displayed_label(index):
-    return ", ".join(map(lambda i: settings.labels[i], settings.clusters[index]))
+    return ", ".join(map(lambda i: settings.labels[i], settings.clusters[index].cases))
 
 
 def generate_json():
@@ -41,7 +41,7 @@ def generate_json():
 
     nodes = []
     for i in range(size):
-        nodes.append({"id": get_displayed_label(i), "group": 1, "size": len(settings.funcs[i]) + 2})
+        nodes.append({"id": get_displayed_label(i), "group": 1, "size": len(settings.clusters[i].funcs) + 2})
 
     links = []
     for i in range(size):

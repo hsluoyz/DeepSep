@@ -4,8 +4,20 @@ test_dict = {}
 
 labels = []
 
+
+class Cluster:
+    cases = set()
+    funcs = set()
+
+    def __init__(self, cases):
+        self.cases = cases
+        self.funcs = set()
+
+    def __str__(self):
+        return str(self.cases) + ", " + str(self.funcs)
+
+
 clusters = []
-funcs = []
 links = []
 
 case_list = []
