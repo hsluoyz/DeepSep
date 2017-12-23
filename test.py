@@ -235,34 +235,39 @@ def cleanse_test_matrix2(m, case_list):
 
     return new_m, new_case_list
 
+
 def get_test_set():
-    for key in settings.test_dict:
-        settings.test_set[key] = set()
-        for key2 in settings.test_dict[key]:
-            settings.test_set[key].add(key2)
+    settings.labels = settings.test_dict.keys()
+
+    for i in range(len(settings.labels)):
+        settings.test_set[(i,)] = set()
+        for func in settings.test_dict[settings.labels[i]]:
+            settings.test_set[(i,)].add(func)
+    pprint.pprint(settings.test_set)
+    pprint.pprint(settings.labels)
 
 
 def get_edges():
-    settings.labels = settings.test_set.keys()
     settings.graph = [([0] * len(settings.labels)) for i in range(len(settings.labels))]
     for i in range(0, len(settings.labels)):
         for j in range(i + 1, len(settings.labels)):
-            whole = min(len(settings.test_set[settings.labels[i]]), settings.test_set[settings.labels[j]])
-            over = len(settings.test_set[settings.labels[i]] & settings.test_set[settings.labels[j]])
+            whole = min(len(settings.test_set[(i,)]), settings.test_set[(j,)])
+            over = len(settings.test_set[(i,)] & settings.test_set[(j,)])
             weight = float(over) / whole
             # print(keys[i], keys[j], weight)
             settings.graph[i][j] = weight
 
         print(settings.graph[i])
 
+
 def run_test():
     init_from_test()
     pprint.pprint(settings.case_list)
     pprint.pprint(settings.api_list)
     # pprint.pprint(settings.test_dict)
+
     get_test_set()
     get_edges()
-    # print.pprint(settings.test_set)
 
 
 if __name__ == '__main__':
