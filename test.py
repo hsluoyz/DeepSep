@@ -241,7 +241,7 @@ def calculate_labels():
     pprint.pprint(settings.labels)
 
     for i in range(len(settings.labels)):
-        settings.clusters.append(settings.Cluster((i,)))
+        settings.clusters.append(settings.Cluster({i}))
         for func in settings.test_dict[settings.labels[i]]:
             settings.clusters[i].funcs.add(func)
 
