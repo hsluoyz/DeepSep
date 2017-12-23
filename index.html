@@ -41,7 +41,11 @@
             .selectAll("line")
             .data(graph.links)
             .enter().append("line")
-            .attr("stroke-width", function(d) { return d.value; });
+            .attr("stroke-width", function(d) { return d.value; })
+            .style("stroke",function(d) {
+                if (d.value == 5) return "#2CA02C"
+                else return "#888888"; //连接线的颜色
+            });
 
         var node = svg.append("g")
             .attr("class", "nodes")
