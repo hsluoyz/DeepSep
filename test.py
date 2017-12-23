@@ -244,16 +244,16 @@ def get_test_set():
 
 def get_edges():
     keys = settings.test_set.keys()
-    settings.test_graph = [([0] * len(keys)) for i in range(len(keys))]
+    settings.graph = [([0] * len(keys)) for i in range(len(keys))]
     for i in range(0, len(keys)):
         for j in range(i + 1, len(keys)):
             whole = min(len(settings.test_set[keys[i]]), settings.test_set[keys[j]])
             over = len(settings.test_set[keys[i]] & settings.test_set[keys[j]])
             weight = float(over) / whole
             # print(keys[i], keys[j], weight)
-            settings.test_graph[i][j] = weight
+            settings.graph[i][j] = weight
 
-        print(settings.test_graph[i])
+        print(settings.graph[i])
 
 def run_test():
     init_from_test()

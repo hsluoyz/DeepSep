@@ -2,7 +2,7 @@
 
 test_dict = {}
 test_set = {}
-test_graph = []
+graph = []
 
 case_list = []
 api_list = []

@@ -20,7 +20,7 @@ def old_way():
     keys = settings.test_set.keys()
     for i in range(0, len(keys)):
         for j in range(i + 1, len(keys)):
-            G.add_edge(keys[i], keys[j], weight=settings.test_graph[i][j])
+            G.add_edge(keys[i], keys[j], weight=settings.graph[i][j])
 
     # G.add_edge('A', 'B', weight=0.1)
     # G.add_edge('B', 'D', weight=2)
@@ -42,8 +42,8 @@ if __name__ == '__main__':
     keys = settings.test_set.keys()
     for i in range(0, len(keys)):
         for j in range(i + 1, len(keys)):
-            if settings.test_graph[i][j] != 0:
-                links.append({"source": keys[i], "target": keys[j], "value": settings.test_graph[i][j] * 5})
+            if settings.graph[i][j] != 0:
+                links.append({"source": keys[i], "target": keys[j], "value": settings.graph[i][j] * 5})
 
     data = {}
     data["nodes"] = nodes
