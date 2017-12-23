@@ -1,9 +1,10 @@
 # coding=gbk
 
 test_dict = {}
+
 test_set = {}
-graph = []
 labels = []
+links = []
 
 case_list = []
 api_list = []
