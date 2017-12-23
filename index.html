@@ -18,7 +18,7 @@
     }
 
 </style>
-<svg width="960" height="600"></svg>
+<svg width="1440" height="1600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -30,7 +30,7 @@
 
     var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
-        .force("charge", d3.forceManyBody().strength(-50))
+        .force("charge", d3.forceManyBody().strength(-200))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     d3.json("miserables2.json", function(error, graph) {
@@ -50,7 +50,7 @@
             .enter().append("g")
 
         var circles = node.append("circle")
-            .attr("r", 10)
+            .attr("r", function(d) { return d.size; })
             .attr("fill", function(d) { return color(d.group); })
             .call(d3.drag()
                 .on("start", dragstarted)

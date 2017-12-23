@@ -36,14 +36,14 @@ if __name__ == '__main__':
 
     nodes = []
     for key in settings.test_set:
-        nodes.append({"id": key, "group": 1})
+        nodes.append({"id": key, "group": 1, "size": len(settings.test_set[key]) + 2})
 
     links = []
     keys = settings.test_set.keys()
     for i in range(0, len(keys)):
         for j in range(i + 1, len(keys)):
             if settings.test_graph[i][j] != 0:
-                links.append({"source": keys[i], "target": keys[j], "value": settings.test_graph[i][j] * 10})
+                links.append({"source": keys[i], "target": keys[j], "value": int(settings.test_graph[i][j] * 10)})
 
     data = {}
     data["nodes"] = nodes
