@@ -248,9 +248,10 @@ def calculate_labels():
 
 
 def calculate_links():
-    settings.links = [([0] * len(settings.labels)) for i in range(len(settings.labels))]
-    for i in range(0, len(settings.labels)):
-        for j in range(i + 1, len(settings.labels)):
+    size = len(settings.test_set)
+    settings.links = [([0] * size) for i in range(size)]
+    for i in range(0, size):
+        for j in range(i + 1, size):
             n = min(len(settings.test_set[(i,)]), settings.test_set[(j,)])
             m = len(settings.test_set[(i,)] & settings.test_set[(j,)])
             weight = float(m) / n

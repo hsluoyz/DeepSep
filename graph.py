@@ -32,8 +32,10 @@ def old_way():
 
 
 def generate_json():
+    size = len(settings.test_set)
+
     nodes = []
-    for i in range(len(settings.labels)):
+    for i in range(size):
         nodes.append({"id": settings.labels[i], "group": 1, "size": len(settings.test_set[(i,)]) + 2})
 
     links = []
