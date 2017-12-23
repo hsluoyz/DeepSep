@@ -35,15 +35,14 @@ if __name__ == '__main__':
     test.run_test()
 
     nodes = []
-    for key in settings.test_set:
-        nodes.append({"id": key, "group": 1, "size": len(settings.test_set[key]) + 2})
+    for label in settings.labels:
+        nodes.append({"id": label, "group": 1, "size": len(settings.test_set[label]) + 2})
 
     links = []
-    keys = settings.test_set.keys()
-    for i in range(0, len(keys)):
-        for j in range(i + 1, len(keys)):
+    for i in range(0, len(settings.labels)):
+        for j in range(i + 1, len(settings.labels)):
             if settings.graph[i][j] != 0:
-                links.append({"source": keys[i], "target": keys[j], "value": settings.graph[i][j] * 5})
+                links.append({"source": settings.labels[i], "target": settings.labels[j], "value": settings.graph[i][j] * 5})
 
     data = {}
     data["nodes"] = nodes

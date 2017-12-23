@@ -3,6 +3,7 @@
 test_dict = {}
 test_set = {}
 graph = []
+labels = []
 
 case_list = []
 api_list = []
