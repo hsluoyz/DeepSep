@@ -1,10 +1,11 @@
 # coding=gbk
-import collections
 
 test_dict = {}
 
-test_set = collections.OrderedDict()
 labels = []
+
+clusters = []
+funcs = []
 links = []
 
 case_list = []

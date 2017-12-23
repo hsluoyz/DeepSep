@@ -238,22 +238,25 @@ def cleanse_test_matrix2(m, case_list):
 
 def calculate_labels():
     settings.labels = settings.test_dict.keys()
+    pprint.pprint(settings.labels)
 
     for i in range(len(settings.labels)):
-        settings.test_set[(i,)] = set()
+        settings.clusters.append((i,))
+        settings.funcs.append(set())
         for func in settings.test_dict[settings.labels[i]]:
-            settings.test_set[(i,)].add(func)
-    pprint.pprint(settings.test_set)
-    pprint.pprint(settings.labels)
+            settings.funcs[i].add(func)
+
+    pprint.pprint(settings.clusters)
+    pprint.pprint(settings.funcs)
 
 
 def calculate_links():
-    size = len(settings.test_set)
+    size = len(settings.clusters)
     settings.links = [([0] * size) for i in range(size)]
-    for i in range(0, size):
+    for i in range(size):
         for j in range(i + 1, size):
-            n = min(len(settings.test_set[(i,)]), settings.test_set[(j,)])
-            m = len(settings.test_set[(i,)] & settings.test_set[(j,)])
+            n = min(len(settings.funcs[i]), settings.funcs[j])
+            m = len(settings.funcs[i] & settings.funcs[j])
             weight = float(m) / n
             # print(keys[i], keys[j], weight)
             settings.links[i][j] = weight

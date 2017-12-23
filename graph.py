@@ -32,15 +32,15 @@ def old_way():
 
 
 def generate_json():
-    size = len(settings.test_set)
+    size = len(settings.clusters)
 
     nodes = []
     for i in range(size):
-        nodes.append({"id": settings.labels[i], "group": 1, "size": len(settings.test_set[(i,)]) + 2})
+        nodes.append({"id": settings.labels[i], "group": 1, "size": len(settings.funcs[i]) + 2})
 
     links = []
-    for i in range(0, len(settings.labels)):
-        for j in range(i + 1, len(settings.labels)):
+    for i in range(size):
+        for j in range(i + 1, size):
             if settings.links[i][j] != 0:
                 links.append({"source": settings.labels[i], "target": settings.labels[j], "value": settings.links[i][j] * 5})
 
