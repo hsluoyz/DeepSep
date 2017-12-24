@@ -16,6 +16,9 @@ class Cluster:
     def __str__(self):
         return str(self.cases) + ", " + str(self.funcs)
 
+    def get_name(self):
+        return ", ".join(map(lambda i: labels[i], self.cases))
+
 
 clusters = []
 links = []

@@ -33,22 +33,18 @@ def old_way():
     plt.show()
 
 
-def get_displayed_label(index):
-    return ", ".join(map(lambda i: settings.labels[i], settings.clusters[index].cases))
-
-
 def generate_json():
     size = len(settings.clusters)
 
     nodes = []
     for i in range(size):
-        nodes.append({"id": get_displayed_label(i), "group": 1, "size": len(settings.clusters[i].funcs) + 2})
+        nodes.append({"id": settings.clusters[i].get_name(), "group": 1, "size": len(settings.clusters[i].funcs) + 2})
 
     links = []
     for i in range(size):
         for j in range(i + 1, size):
             if settings.links[i][j] != 0:
-                links.append({"source": get_displayed_label(i), "target": get_displayed_label(j), "value": settings.links[i][j] * 5})
+                links.append({"source": settings.clusters[i].get_name(), "target": settings.clusters[j].get_name(), "value": settings.links[i][j] * 5})
 
     data = {"nodes": nodes, "links": links}
     store(data)
@@ -56,7 +52,7 @@ def generate_json():
 
 if __name__ == '__main__':
     test.run_test()
-    algorithm.do_clustering()
+    # algorithm.do_clustering()
     test.print_links()
     test.print_clusters()
     generate_json()
