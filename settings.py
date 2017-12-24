@@ -6,12 +6,11 @@ labels = []
 
 
 class Cluster:
-    cases = set()
-    funcs = set()
-
     def __init__(self, cases):
         self.cases = cases
         self.funcs = set()
+        self.children = []
+        self.level = 0
 
     def __str__(self):
         return str(self.cases) + ", " + str(self.funcs)
