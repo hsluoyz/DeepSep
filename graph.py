@@ -56,7 +56,8 @@ def generate_cluster_tree():
 
 if __name__ == '__main__':
     test.run_test()
-    algorithm.do_clustering()
+    algorithm.do_clustering(1)
+    algorithm.do_clustering(0)
     test.print_links()
     test.print_clusters()
     # generate_force_layout()

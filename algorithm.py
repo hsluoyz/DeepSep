@@ -20,12 +20,12 @@ def merge_clusters(c1, c2):
     return c
 
 
-def do_clustering():
+def do_clustering(th):
     i = 0
     while i < len(settings.clusters):
         j = i + 1
         while j < len(settings.clusters):
-            if settings.links[i][j] >= 0:
+            if settings.links[i][j] >= th:
                 settings.clusters[i] = merge_clusters(settings.clusters[i], settings.clusters[j])
                 del settings.clusters[j]
                 test.calculate_links()
