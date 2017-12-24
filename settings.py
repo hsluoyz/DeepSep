@@ -18,6 +18,12 @@ class Cluster:
     def get_name(self):
         return ", ".join(map(lambda i: labels[i], self.cases))
 
+    def to_dict(self):
+        if len(self.children) != 0:
+            return {"name": self.get_name(), "children": [c.to_dict() for c in self.children]}
+        else:
+            return {"name": self.get_name()}
+
 
 clusters = []
 links = []

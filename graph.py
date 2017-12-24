@@ -50,9 +50,14 @@ def generate_force_layout():
     store2json('miserables2.json', data)
 
 
+def generate_cluster_tree():
+    store2json('flare2.json', settings.clusters[0].to_dict())
+
+
 if __name__ == '__main__':
     test.run_test()
-    # algorithm.do_clustering()
+    algorithm.do_clustering()
     test.print_links()
     test.print_clusters()
-    generate_force_layout()
+    # generate_force_layout()
+    generate_cluster_tree()
