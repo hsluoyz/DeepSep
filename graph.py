@@ -9,8 +9,8 @@ import test
 import settings
 
 
-def store(data):
-    with open('miserables2.json', 'w') as json_file:
+def store2json(filename, data):
+    with open(filename, 'w') as json_file:
         json_file.write(json.dumps(data, indent=2))
 
 
@@ -47,7 +47,7 @@ def generate_force_layout():
                 links.append({"source": settings.clusters[i].get_name(), "target": settings.clusters[j].get_name(), "value": settings.links[i][j] * 5})
 
     data = {"nodes": nodes, "links": links}
-    store(data)
+    store2json('miserables2.json', data)
 
 
 if __name__ == '__main__':
