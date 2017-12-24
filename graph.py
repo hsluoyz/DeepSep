@@ -33,7 +33,7 @@ def old_way():
     plt.show()
 
 
-def generate_json():
+def generate_force_layout():
     size = len(settings.clusters)
 
     nodes = []
@@ -55,4 +55,4 @@ if __name__ == '__main__':
     # algorithm.do_clustering()
     test.print_links()
     test.print_clusters()
-    generate_json()
+    generate_force_layout()
