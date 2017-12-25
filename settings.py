@@ -17,9 +17,9 @@ class Cluster:
 
     def get_name(self):
         if len(self.cases) == 1:
-            return ", ".join(map(lambda i: labels[i], self.cases))
+            return str(self.level) + ": " + ", ".join(map(lambda i: labels[i], self.cases))
         else:
-            return "Node"
+            return str(self.level) + ": Node"
         # return ", ".join(map(lambda i: labels[i], self.cases))
 
     def to_dict(self):
