@@ -3,8 +3,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import json
+import random
 
-import algorithm
 import test
 import settings
 
@@ -33,12 +33,16 @@ def old_way():
     plt.show()
 
 
+def get_random_group():
+    return random.randint(0, 19)
+
+
 def generate_force_layout():
     size = len(settings.clusters)
 
     nodes = []
     for i in range(size):
-        nodes.append({"id": settings.clusters[i].get_name(), "group": 1, "size": len(settings.clusters[i].funcs) + 2})
+        nodes.append({"id": settings.clusters[i].get_name(), "group": get_random_group(), "size": len(settings.clusters[i].funcs) + 2})
 
     links = []
     for i in range(size):
@@ -50,18 +54,10 @@ def generate_force_layout():
     store2json('miserables2.json', data)
 
 
-def generate_cluster_tree():
-    store2json('flare2.json', settings.clusters[0].to_dict())
-
-
 if __name__ == '__main__':
     test.run_test()
-    algorithm.do_clustering(1)
-    algorithm.do_clustering(0.7)
-    algorithm.do_clustering(0.5)
-    algorithm.do_clustering(0.2)
-    algorithm.do_clustering(0)
+
     test.print_links()
     test.print_clusters()
-    # generate_force_layout()
-    generate_cluster_tree()
+
+    generate_force_layout()

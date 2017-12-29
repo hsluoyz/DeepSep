@@ -1,6 +1,8 @@
 
 import settings
 import test
+import graph
+import algorithm
 
 
 def merge_clusters(c1, c2):
@@ -34,7 +36,24 @@ def do_clustering(th):
         i += 1
 
 
+def generate_cluster_tree():
+    graph.store2json('flare2.json', settings.clusters[0].to_dict())
+
+
 if __name__ == '__main__':
-    c1 = settings.Cluster({1})
-    c2 = settings.Cluster({2})
-    print merge_clusters(c1, c2)
+    # c1 = settings.Cluster({1})
+    # c2 = settings.Cluster({2})
+    # print merge_clusters(c1, c2)
+
+    test.run_test()
+
+    algorithm.do_clustering(1)
+    algorithm.do_clustering(0.7)
+    algorithm.do_clustering(0.5)
+    algorithm.do_clustering(0.2)
+    algorithm.do_clustering(0)
+
+    test.print_links()
+    test.print_clusters()
+
+    generate_cluster_tree()
