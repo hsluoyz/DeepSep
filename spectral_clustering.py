@@ -1,8 +1,10 @@
 # coding=gbk
 
-import random
 import test
 import settings
+import graph
+
+import random
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.cluster import KMeans
@@ -63,9 +65,9 @@ def plot(matrix, C, centers, k):
 #     return centers
 
 
-if __name__ == '__main__':
+def calculate_labels():
     cluster_num = 5
-    test.run_test()
+
     W = get_w()
     D = get_d(W)
     L = D - W
@@ -74,7 +76,20 @@ if __name__ == '__main__':
     clf = KMeans(n_clusters=cluster_num)
     s = clf.fit(eigvec)
     C = s.labels_
-    print C
 
     # centers = get_centers(data, C)
     # plot(data, s.labels_, centers, cluster_num)
+
+    return C
+
+
+if __name__ == '__main__':
+    test.run_test()
+
+    test.print_links()
+    test.print_clusters()
+
+    labels = calculate_labels()
+    print labels
+
+    graph.generate_force_layout(labels)
