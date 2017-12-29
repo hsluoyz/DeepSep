@@ -33,16 +33,20 @@ def old_way():
     plt.show()
 
 
-def get_random_group():
-    return random.randint(0, 19)
+def get_random_labels():
+    labels = []
+    size = len(settings.clusters)
+    for i in range(size):
+        labels.append(random.randint(0, 19))
+    return labels
 
 
-def generate_force_layout():
+def generate_force_layout(labels):
     size = len(settings.clusters)
 
     nodes = []
     for i in range(size):
-        nodes.append({"id": settings.clusters[i].get_name(), "group": get_random_group(), "size": len(settings.clusters[i].funcs) + 2})
+        nodes.append({"id": settings.clusters[i].get_name(), "group": labels[i], "size": len(settings.clusters[i].funcs) + 2})
 
     links = []
     for i in range(size):
@@ -60,4 +64,5 @@ if __name__ == '__main__':
     test.print_links()
     test.print_clusters()
 
-    generate_force_layout()
+    labels = get_random_labels()
+    generate_force_layout(labels)
