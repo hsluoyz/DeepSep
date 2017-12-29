@@ -46,6 +46,7 @@ def generate_force_layout(labels):
 
     nodes = []
     for i in range(size):
+        settings.clusters[i].level = labels[i]
         nodes.append({"id": settings.clusters[i].get_name(), "group": labels[i], "size": len(settings.clusters[i].funcs) + 2})
 
     links = []
