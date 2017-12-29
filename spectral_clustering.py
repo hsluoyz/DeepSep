@@ -16,7 +16,10 @@ def get_w():
     w = np.zeros((size, size))
     for i in range(size):
         for j in range(i + 1, size):
-            w[i][j] = w[j][i] = round(settings.links[i][j], 3)
+            val = round(settings.links[i][j], 3)
+            if val != 1:
+                val = 0
+            w[i][j] = w[j][i] = val
     return w
 
 
@@ -66,7 +69,7 @@ def plot(matrix, C, centers, k):
 
 
 def calculate_labels():
-    cluster_num = 5
+    cluster_num = 10
 
     W = get_w()
     D = get_d(W)
