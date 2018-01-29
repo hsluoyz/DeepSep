@@ -17,7 +17,7 @@ def get_w():
     for i in range(size):
         for j in range(i + 1, size):
             val = round(settings.links[i][j], 3)
-            if val != 1:
+            if val < 0.1:
                 val = 0
             w[i][j] = w[j][i] = val
     return w
@@ -69,7 +69,7 @@ def plot(matrix, C, centers, k):
 
 
 def calculate_labels():
-    cluster_num = 10
+    cluster_num = 14
 
     W = get_w()
     D = get_d(W)
