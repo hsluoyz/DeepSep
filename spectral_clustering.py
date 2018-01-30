@@ -68,9 +68,7 @@ def plot(matrix, C, centers, k):
 #     return centers
 
 
-def calculate_labels():
-    cluster_num = 14
-
+def calculate_labels(cluster_num):
     W = get_w()
     D = get_d(W)
     L = D - W
@@ -86,13 +84,82 @@ def calculate_labels():
     return C
 
 
+def summarize_result(cluster_num):
+    print settings.clusters
+    clusters = []
+    for i in range(cluster_num):
+        clusters.append(settings.Cluster(set()))
+    for i in range(len(settings.clusters)):
+        c = clusters[labels[i]]
+        c.cases |= settings.clusters[i].cases
+        c.funcs |= settings.clusters[i].funcs
+    return clusters
+
+
+def print_clusters(clusters):
+    print "*****************************************************"
+    print "Size of resulting roles: " + str(len(clusters))
+    print "*****************************************************"
+    for c in clusters:
+        print(c)
+    print ""
+
+
+def check_permission_coverage(clusters):
+    permissions = set()
+    for i in range(len(clusters)):
+        permissions |= clusters[i].funcs
+
+    print "*****************************************************"
+    print "Size of covered permissions: " + str(len(permissions))
+    print "*****************************************************"
+    print permissions
+    return len(permissions)
+
+
+def check_overlap(clusters):
+    overlap = 0
+    for i in range(len(clusters)):
+        overlap += len(clusters[i].funcs)
+    return overlap
+
+
+def check_testcase_coverage(clusters):
+    cases = set()
+    for i in range(len(clusters)):
+        cases |= clusters[i].cases
+
+    print "*****************************************************"
+    print "Size of covered test cases: " + str(len(cases))
+    print "*****************************************************"
+    print cases
+    return len(cases)
+
+
+def print_all(covered_permissions, cluster_num, overlap, covered_testcases):
+    print "*****************************************************"
+    print "#Covered permisions: %d, #roles: %d, #overlaps: %d, #covered test cases: %d" %\
+          (covered_permissions, cluster_num, overlap - covered_permissions, covered_testcases)
+    print "*****************************************************"
+
+
 if __name__ == '__main__':
+    cluster_num = 14
+
     test.run_test()
 
     test.print_links()
     test.print_clusters()
 
-    labels = calculate_labels()
+    labels = calculate_labels(cluster_num)
     print labels
 
-    graph.generate_force_layout(labels)
+    clusters = summarize_result(cluster_num)
+    print_clusters(clusters)
+    covered_permissions = check_permission_coverage(clusters)
+    overlap = check_overlap(clusters)
+    covered_testcases = check_testcase_coverage(clusters)
+    print_all(covered_permissions, cluster_num, overlap, covered_testcases)
+
+
+    # graph.generate_force_layout(labels)
